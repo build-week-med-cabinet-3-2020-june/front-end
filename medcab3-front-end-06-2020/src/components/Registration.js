@@ -23,7 +23,7 @@ class Registration extends React.Component {
     register = e => {
         e.preventDefault();
         axios
-            .post("newURL", this.state.creds)
+            .post("http://localhost:5000/api/register", this.state.creds)
             .then(res => {
                 console.log(res)
             })
