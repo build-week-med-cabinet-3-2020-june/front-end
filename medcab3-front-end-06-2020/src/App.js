@@ -8,7 +8,7 @@ const App = () => {
   return (
     <>
     <Navbar color='info'>
-      <h1 style={{ color: 'blue'}}>Meical Marijuana</h1>
+      <h1 style={{ color: 'blue'}}>Medical Marijuana</h1>
       <Link to={'/'}>
         <Button color='info'>
           Home

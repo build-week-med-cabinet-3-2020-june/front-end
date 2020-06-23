@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import { Card, CardImg, Form, FormGroup, Input, Dropdown, DropdownToggle, DropdownMenu, Label, Button } from 'reactstrap';
+import { Card, Form, FormGroup, Input, Label, Button } from 'reactstrap';
 import axios from 'axios';
-// import * as yup from 'yup';
+
 
 
 const OrderForm = () =>{
-    const [dropdownOpen, setDropdownOpen] = useState(false);
-    const toggle = () => setDropdownOpen((prevState) => !prevState)
     const [formData, setFormData] =useState({
         name:"",
         type:"",
@@ -29,21 +27,21 @@ const OrderForm = () =>{
         <>
         <Card color='info'>
             <h2 style={{color: 'red', margin: '0 auto'}}>
-                Headline Here
+                Choose Your Option
             </h2>*
         </Card>
         <Form>
         
         <FormGroup check>
             <Label check>
-                    <Input type='radio' name='Sativa' value='white' onChange={handleChange}/>
+                    <Input type='radio' name='Sativa' id='Sativa' onChange={handleChange}/>
                     Sativa
                 </Label>
             </FormGroup>
 
             <FormGroup check>
             <Label check>
-                    <Input type='radio' name='Indica' value='white' onChange={handleChange}/>
+                    <Input type='radio' name='Indica' id='Indica' onChange={handleChange}/>
                     Indica
                 </Label>
             </FormGroup>
