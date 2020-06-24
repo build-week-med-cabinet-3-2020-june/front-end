@@ -23,7 +23,7 @@ class Registration extends React.Component {
     register = e => {
         e.preventDefault();
         axios
-            .post("http://localhost:5000/api/register", this.state.creds)
+            .post("http://localhost:5000/api/auth/register", this.state.creds)
             .then(res => {
                 console.log(res)
             })
@@ -61,4 +61,4 @@ class Registration extends React.Component {
     }
 }
 
-export default Login
+export default Registration

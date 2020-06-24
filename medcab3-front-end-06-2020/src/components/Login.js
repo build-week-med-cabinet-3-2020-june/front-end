@@ -5,8 +5,8 @@ class Login extends React.Component {
     // login form state
     state = {
         creds: {
-            username: "",
-            password: ""
+            username: "username",
+            password: "password"
         }
     };
     // handler for typing in form
@@ -22,10 +22,10 @@ class Login extends React.Component {
     login = e => {
         e.preventDefault();
         axios
-            .post("http://localhost:5000/api/login", this.state.creds)
+            .post("http://localhost:5000/api/auth/login", this.state.creds)
             .then(res => {
                 console.log(res)
-                localStorage.setItem("token", res.data.payload)
+                localStorage.setItem("token", res.data.token)
                 this.props.history.push("/protected")
             })
             .catch(err => {
