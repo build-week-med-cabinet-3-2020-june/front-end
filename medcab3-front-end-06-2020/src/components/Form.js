@@ -25,21 +25,21 @@ const OrderForm = (props) =>{
         <>
         <Card color='info'>
             <h2 style={{color: 'red', margin: '0 auto'}}>
-                Headline Here
+                Choose Your Option
             </h2>*
         </Card>
         <Form>
         
         {/* <FormGroup check>
             <Label check>
-                    <Input type='radio' name='Sativa' value='white' onChange={handleChange}/>
+                    <Input type='radio' name='Sativa' id='Sativa' onChange={handleChange}/>
                     Sativa
                 </Label>
             </FormGroup>
 
             <FormGroup check>
             <Label check>
-                    <Input type='radio' name='Indica' value='white' onChange={handleChange}/>
+                    <Input type='radio' name='Indica' id='Indica' onChange={handleChange}/>
                     Indica
                 </Label>
             </FormGroup> */}
