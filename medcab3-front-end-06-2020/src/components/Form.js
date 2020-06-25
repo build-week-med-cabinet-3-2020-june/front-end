@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Card, Form, FormGroup, Input, Label, Button } from 'reactstrap';
-import axios from 'axios';
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 
 
@@ -14,8 +14,10 @@ const OrderForm = () =>{
         setFormData({...formData, [e.target.name]: e.target.value})
     }
 
-    const DS = axios.get('https://med-cabinet-3-erik.herokuapp.com/predictions');
+    const DS = axiosWithAuth().get('https://med-cab-api.herokuapp.com/');
     console.log(DS, "success")
+
+    // map here and card
 
 
     return(
