@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import { Card, CardImg, Form, FormGroup, Input, Dropdown, DropdownToggle, DropdownMenu, Label, Button } from 'reactstrap';
+import { Card, Form, FormGroup, Input, Label, Button } from 'reactstrap';
 import axios from 'axios';
-// import * as yup from 'yup';
+
 
 
 const OrderForm = () =>{
-    const [dropdownOpen, setDropdownOpen] = useState(false);
-    const toggle = () => setDropdownOpen((prevState) => !prevState)
     const [formData, setFormData] =useState({
         name:"",
         type:"",
@@ -16,13 +14,8 @@ const OrderForm = () =>{
         setFormData({...formData, [e.target.name]: e.target.value})
     }
 
-    // const submit = () => {
-    //     schema.validate(formData).then( () =>{
-    //         axios.post('', formData).then((res) =>{
-    //             console.log(res.data, 'This is posted data')
-    //         })
-    //     })
-    // }
+    const DS = axios.get('https://med-cabinet-3-erik.herokuapp.com/predictions');
+    console.log(DS, "success")
 
 
     return(
