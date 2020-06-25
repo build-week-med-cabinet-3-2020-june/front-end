@@ -31,6 +31,8 @@ const App = () => {
   }, [isLoggedIn, userId])
 
 
+
+
   return (
     <div className="App">
     {/* Login status will determine which header to render */}
@@ -67,7 +69,7 @@ const App = () => {
      
     
     <Switch>
-    <PrivateRoute path="/protected" component={ OrderForm } />
+    <PrivateRoute path="/protected" component={ OrderForm } handleSubmit={ handleSubmit } />
     <Route exact path='/'>
       {/* <Card>
         <Link to={'./info'}>

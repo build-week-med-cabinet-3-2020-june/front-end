@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { Card, CardImg, Form, FormGroup, Input, Dropdown, DropdownToggle, DropdownMenu, Label, Button } from 'reactstrap';
-import axios from 'axios';
-// import * as yup from 'yup';
+import { Card, Form, FormGroup, Input, Label, Button } from 'reactstrap';
+import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { prependOnceListener } from '../../../../back-end/database/dbConfig';
 
 
-const OrderForm = () =>{
-    const [dropdownOpen, setDropdownOpen] = useState(false);
-    const toggle = () => setDropdownOpen((prevState) => !prevState)
+
+const OrderForm = (props) =>{
     const [formData, setFormData] =useState({
         name:"",
         type:"",
@@ -16,13 +15,10 @@ const OrderForm = () =>{
         setFormData({...formData, [e.target.name]: e.target.value})
     }
 
-    // const submit = () => {
-    //     schema.validate(formData).then( () =>{
-    //         axios.post('', formData).then((res) =>{
-    //             console.log(res.data, 'This is posted data')
-    //         })
-    //     })
-    // }
+    const DS = axiosWithAuth().get('https://med-cab-api.herokuapp.com/');
+    console.log(DS, "success")
+
+    // map here and card
 
 
     return(
@@ -34,21 +30,9 @@ const OrderForm = () =>{
         </Card>
         <Form>
         
-        <FormGroup check>
-            <Label check>
-                    <Input type='radio' name='Sativa' value='white' onChange={handleChange}/>
-                    Sativa
-                </Label>
-            </FormGroup>
+            <input type="text" placeholder="Search.."></input>
 
-            <FormGroup check>
-            <Label check>
-                    <Input type='radio' name='Indica' value='white' onChange={handleChange}/>
-                    Indica
-                </Label>
-            </FormGroup>
-
-            <Button>Submit</Button>
+            <Button onSubmit={props.handleSubmit}>Submit</Button>
         </Form>
         </>
     )

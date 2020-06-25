@@ -7,7 +7,6 @@ class Registration extends React.Component {
         creds: {
             username: "",
             password: "",
-            email:""
         }
     };
     // handler for typing in form
@@ -46,12 +45,6 @@ class Registration extends React.Component {
                         type="password"
                         name="password"
                         value={this.state.creds.password}
-                        onChange={this.handleChanges}
-                    />
-                    <input
-                        type="email"
-                        name="email"
-                        value={this.state.creds.email}
                         onChange={this.handleChanges}
                     />
                     <button>Register</button>
