@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Card, Form, FormGroup, Input, Label, Button } from 'reactstrap';
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { prependOnceListener } from '../../../../back-end/database/dbConfig';
 
 
 
-const OrderForm = () =>{
+const OrderForm = (props) =>{
     const [formData, setFormData] =useState({
         name:"",
         type:"",
@@ -29,7 +30,7 @@ const OrderForm = () =>{
         </Card>
         <Form>
         
-        <FormGroup check>
+        {/* <FormGroup check>
             <Label check>
                     <Input type='radio' name='Sativa' value='white' onChange={handleChange}/>
                     Sativa
@@ -41,9 +42,10 @@ const OrderForm = () =>{
                     <Input type='radio' name='Indica' value='white' onChange={handleChange}/>
                     Indica
                 </Label>
-            </FormGroup>
+            </FormGroup> */}
+            <input type="text" placeholder="Search.."></input>
 
-            <Button>Submit</Button>
+            <Button onSubmit={props.handleSubmit}>Submit</Button>
         </Form>
         </>
     )
