@@ -1,18 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Navbar, Card, CardImg } from 'reactstrap';
 import { Route, Link, Switch } from 'react-router-dom';
 
 // components
 import OrderForm from './components/Form.js';
-import Login from './components/Login';
+import LoginForm from "./components/LoginForm.js";
 import Registration from './components/Registration'
+import PrivateRoute from './components/PrivateRoute'
 import {LogoutNavbar} from './components/LogoutNavbar'
+
+// context
+import {LoginContext} from './context/LoggedIn'
+
 
 
 const App = () => {
   // state
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [userId, setUserId] =  useState('')
+
+  const loginStatus = () => {
+    localStorage.getItem('token') &&
+    setIsLoggedIn(true)
+  }
+
+  useEffect(() => {
+    loginStatus()
+    localStorage.getItem('id') &&
+    setUserId(localStorage.getItem('id'))
+  }, [isLoggedIn, userId])
+
+
   return (
     <div className="App">
     {/* Login status will determine which header to render */}
@@ -49,6 +67,7 @@ const App = () => {
      
     
     <Switch>
+    <PrivateRoute path="/protected" component={ OrderForm } />
     <Route exact path='/'>
       {/* <Card>
         <Link to={'./info'}>
@@ -58,11 +77,10 @@ const App = () => {
         </Link>
       </Card> */}
     </Route>
-    <Route path="/login" component={ Login } />
-    <Route path="/register" component={ Registration } />
-    <Route path='/info'>
-      <OrderForm/>
-    </Route>
+    <LoginContext.Provider value={{setIsLoggedIn}}>
+      <Route path="/Login" component={LoginForm} setIsLoggedIn={setIsLoggedIn} />
+    </LoginContext.Provider>
+    <Route path="/Register" component={ Registration } />
     </Switch>
     </div>
   );

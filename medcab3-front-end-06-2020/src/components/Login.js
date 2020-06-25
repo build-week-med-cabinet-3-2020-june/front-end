@@ -1,7 +1,15 @@
-import React from 'react'
-import axios from 'axios'
+import React, { useContext } from 'react'
+import {axiosWithAuth} from '../utils/axiosWithAuth'
+
+import { LoginContext } from '../context/LoggedIn'
+
+// Going to keep this and try to practice using 
+// context with class components
+
+
 
 class Login extends React.Component {
+    
     // login form state
     state = {
         creds: {
@@ -9,6 +17,7 @@ class Login extends React.Component {
             password: "password"
         }
     };
+
     // handler for typing in form
     handleChanges = e => {
         this.setState({
@@ -21,12 +30,18 @@ class Login extends React.Component {
     // login function
     login = e => {
         e.preventDefault();
-        axios
+        axiosWithAuth()
             .post("http://localhost:5000/api/auth/login", this.state.creds)
             .then(res => {
                 console.log(res)
+
                 localStorage.setItem("token", res.data.token)
-                this.props.history.push("/protected")
+                // need to get unique ids for each user
+                // currently no user id exists
+                localStorage.setItem('id', res.data.user.id)
+                this.setIsLoggedIn(true)
+                this.props.history.push(`/protected/${res.data.user.id}`)
+
             })
             .catch(err => {
                 console.log(err, err.message)
@@ -37,6 +52,7 @@ class Login extends React.Component {
         return (
             <div>
                 <form onSubmit={this.login}>
+                <p>Please sign in to coninue.:</p>
                     <input
                         type="text"
                         name="username"
