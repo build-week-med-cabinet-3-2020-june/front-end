@@ -77,10 +77,11 @@ const App = () => {
         </Link>
       </Card> */}
     </Route>
+    <Route path="/Register" component={ Registration } />
     <LoginContext.Provider value={{setIsLoggedIn}}>
       <Route path="/Login" component={LoginForm} setIsLoggedIn={setIsLoggedIn} />
     </LoginContext.Provider>
-    <Route path="/Register" component={ Registration } />
+    
     </Switch>
     </div>
   );
