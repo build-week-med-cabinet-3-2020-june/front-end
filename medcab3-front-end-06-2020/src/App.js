@@ -11,6 +11,7 @@ import {LogoutNavbar} from './components/LogoutNavbar'
 
 // context
 import {LoginContext} from './context/LoggedIn'
+import { axiosWithAuth } from "./utils/axiosWithAuth.js";
 
 
 
@@ -18,6 +19,7 @@ const App = () => {
   // state
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [userId, setUserId] =  useState('')
+  const apiUrl = 'http://localhost:5000/api/strains/'
 
   const loginStatus = () => {
     localStorage.getItem('token') &&
@@ -30,7 +32,17 @@ const App = () => {
     setUserId(localStorage.getItem('id'))
   }, [isLoggedIn, userId])
 
-
+  const handleSubmit= (e) => {
+    e.preventDefault()
+    axiosWithAuth()
+      .get(apiUrl)
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
 
 
   return (
@@ -69,7 +81,7 @@ const App = () => {
      
     
     <Switch>
-    <PrivateRoute path="/protected" component={ OrderForm } handleSubmit={ handleSubmit } />
+    <PrivateRoute path="/protected" component={ OrderForm } handleSubmit={handleSubmit} />
     <Route exact path='/'>
       {/* <Card>
         <Link to={'./info'}>
