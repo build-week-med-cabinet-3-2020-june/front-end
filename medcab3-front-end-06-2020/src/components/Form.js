@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { Card, Form, FormGroup, Input, Label, Button } from 'reactstrap';
+import { Card, Form, Button } from 'reactstrap';
 import { axiosWithAuth } from "../utils/axiosWithAuth";
-import { prependOnceListener } from '../../../../back-end/database/dbConfig';
 
 
 
-const OrderForm = (props) =>{
+const OrderForm = props =>{
     const [formData, setFormData] =useState({
         name:"",
         type:"",
@@ -15,8 +14,6 @@ const OrderForm = (props) =>{
         setFormData({...formData, [e.target.name]: e.target.value})
     }
 
-    const DS = axiosWithAuth().get('https://med-cab-api.herokuapp.com/');
-    console.log(DS, "success")
 
     // map here and card
 
@@ -28,11 +25,11 @@ const OrderForm = (props) =>{
                 Headline Here
             </h2>*
         </Card>
-        <Form>
+        <Form onSubmit={props.handleSubmit}>
         
             <input type="text" placeholder="Search.."></input>
 
-            <Button onSubmit={props.handleSubmit}>Submit</Button>
+            <Button >Submit</Button>
         </Form>
         </>
     )
