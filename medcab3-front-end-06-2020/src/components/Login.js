@@ -13,7 +13,7 @@ class Login extends React.Component {
     // login form state
     state = {
         creds: {
-            username: "username",
+            eamil: "email",
             password: "password"
         }
     };
@@ -31,7 +31,7 @@ class Login extends React.Component {
     login = e => {
         e.preventDefault();
         axiosWithAuth()
-            .post("http://localhost:5000/api/auth/login", this.state.creds)
+            .post("https://spotify-be-ls.herokuapp.com/auth/login", this.state.creds)
             .then(res => {
                 console.log(res)
 
@@ -54,9 +54,9 @@ class Login extends React.Component {
                 <form onSubmit={this.login}>
                 <p>Please sign in to coninue.:</p>
                     <input
-                        type="text"
-                        name="username"
-                        value={this.state.creds.username}
+                        type="email"
+                        name="email"
+                        value={this.state.creds.email}
                         onChange={this.handleChanges}
                     />
                     <input

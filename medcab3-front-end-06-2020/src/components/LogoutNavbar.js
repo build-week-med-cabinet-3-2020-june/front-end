@@ -3,7 +3,8 @@ import {Link, useHistory} from 'react-router-dom'
 import { Navbar } from 'reactstrap'
 
 
-export const LogoutNavbar = ({userId, setIsLoggedIn}) => {
+export const LogoutNavbar = ({userInfo, setIsLoggedIn}) => {
+    console.log(userInfo)
     const { push } = useHistory();
 
     const handleLogout = () => {
@@ -15,7 +16,8 @@ export const LogoutNavbar = ({userId, setIsLoggedIn}) => {
     return (
         <Navbar color='info'>
             <h1 style={{ color:'blue' }} >Medical Marijuana</h1>
-            <Link to={`/protected/${userId}`}>Home</Link>
+            <Link to={`/protected/${userInfo.id}`}>Home</Link>
+    <Link to={`/protected/${userInfo.id}/profile`}>Profile</Link>
             <button className="button" onClick={handleLogout}>
                 Logout
             </button>

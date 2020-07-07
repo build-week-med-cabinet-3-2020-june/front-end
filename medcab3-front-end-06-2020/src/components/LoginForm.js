@@ -5,14 +5,14 @@ import { useHistory } from "react-router-dom";
 import {LoginContext} from '../context/LoggedIn';
 
 const initialState = {
-    username:"username",
+    email:"email",
     password:"password"
 }
 
 export default function LoginForm() {
     const [creds, setCreds] = useState(initialState)
     const { push } = useHistory()
-    const { setIsLoggedIn } = useContext(LoginContext)
+    const { setIsLoggedIn, setUserInfo } = useContext(LoginContext)
     
     const handleChanges = e => {
         setCreds({            
@@ -25,16 +25,13 @@ export default function LoginForm() {
         e.preventDefault();
         console.log(creds)
         axiosWithAuth()
-            .post("http://localhost:5000/api/auth/login", creds)
+            .post("https://spotify-be-ls.herokuapp.com/auth/login", creds)
             .then(res => {
-                console.log(res)
+                console.log("loginForm results: ", res)
 
                 localStorage.setItem("token", res.data.token)
-                // need to get unique ids for each user
-                // currently no user id exists
-                localStorage.setItem('id', res.data.id)
                 setIsLoggedIn(true)
-                push(`/protected/${res.data.id}`)
+                push(`/protected/`)
 
             })
             .catch(err => {
@@ -46,9 +43,9 @@ export default function LoginForm() {
         <form onSubmit={handleLogin}>
             <p>Please sign in to coninue.:</p>
                 <input
-                    type="text"
-                    name="username"
-                    value={creds.username}
+                    type="email"
+                    name="email"
+                    value={creds.email}
                     onChange={handleChanges}
                 />
                 <input
